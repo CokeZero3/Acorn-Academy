@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="134.0" prefWidth="526.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <center>
+      <AnchorPane prefHeight="154.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="171.0" prefWidth="360.0">
+               <children>
+                  <TextField fx:id="idTxtFied" layoutX="126.0" layoutY="42.0" promptText="ID" />
+                  <PasswordField fx:id="pwTxtField" layoutX="126.0" layoutY="94.0" promptText="PW" />
+                  <Label layoutX="41.0" layoutY="44.0" text="ID">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="36.0" layoutY="96.0" text="PW">
+                     <font>
+                        <Font size="25.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Button fx:id="loginBtn" layoutX="360.0" layoutY="35.0" mnemonicParsing="false" prefHeight="102.0" prefWidth="121.0" text="Login">
+               <font>
+                  <Font size="30.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

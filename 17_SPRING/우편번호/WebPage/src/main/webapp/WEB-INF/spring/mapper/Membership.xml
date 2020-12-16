@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.membership.IDao">
+<select id="isExistId"
+		parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ID=#{id}
+</select>
+<select id="searchZipcode"
+		parameterType="String"
+		resultType="com.care.membership.Zipcode">
+		SELECT * FROM zipcode
+		WHERE DONG1 like '%'||#{dong1}||'%'
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,53 @@
+Alter table CUSTOMERS
+MODIFY (CustomerID VARCHAR2(100))
+
+
+Select * from CUSTOMERS;
+
+delete from CUSTOMERS;
+
+CREATE TABLE Categories
+(
+    CategoryID      INT             NOT NULL, 
+    CategoryName    VARCHAR2(20)    NULL, 
+    Description     VARCHAR2(80)    NULL, 
+    CONSTRAINT CATEGORIES_PK PRIMARY KEY (CategoryID)
+)
+SELECT distinct Country as 국가명
+FROM (
+	SELECT distinct Country, City
+	from Customers	
+)
+
+select * from categories
+
+
+select sysdate from dual;
+
+
+SELECT TO_CHAR(sysdate,'yyyymmdd hh24:mi:ss')
+ AS "오늘날짜"
+ FROM dual
+
+select * from Customers;
+delete from customers;
+
+alter table customers
+Modify (POSTALCODE null)
+
+
+drop table Customers;
+
+CREATE TABLE Customers
+(
+    CustomerID      INT             NOT NULL, 
+    CustomerName    VARCHAR2(40)    NULL, 
+    ContactName     VARCHAR2(40)    NULL, 
+    Address         VARCHAR2(50)    NULL, 
+    City            VARCHAR2(30)    NULL, 
+    PostalCode      VARCHAR2(40)    NULL, 
+    Country         VARCHAR2(30)    NULL, 
+    CONSTRAINT CUSTOMERS_PK PRIMARY KEY (CustomerID)
+)
+
+select * from customers;

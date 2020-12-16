@@ -1,0 +1,59 @@
+sql 실행 문
+
+CREATE TABLE customers(
+	CustomerID      INT NOT NULL,
+	CustomerName	VARCHAR2(50) NOT NULL,
+	ContactName		VARCHAR2(50) NOT NULL,
+	Address			VARCHAR2(40) NOT NULL,
+	City			VARCHAR2(20) NOT NULL,
+	PostalCode 		VARCHAR2(20) NOT NULL,
+	Country 		VARCHAR2(20) NOT NULL,
+	CONSTRAINT CUSTOMERS_PK PRIMARY KEY (CustomerID)
+)
+
+select * from CUSTOMERS;
+
+create sequence autoinc;
+
+select autoInc.nextval from dual;
+
+drop sequence autoinc;
+
+create sequence autoInc
+START WITH 1
+INCREMENT by 2
+MAXVALUE 5
+NOCYCLE NOCACHE;
+
+drop sequence autoInc;
+
+
+
+
+CREATE SEQUENCE autoInc
+Start with 1;
+
+
+INSERT INTO customers(
+CustomerID, CustomerName, 
+ContactName, Address, 
+City, PostalCode, Country)
+VALUES(autoInc.nextVal,'CustomerName 1',
+'ContactName 1', 'Address 1', 
+'City 1', 'PostalCode 1', 'Country 1');
+
+insert into customers
+VALUES(autoInc.nextVal,'CustomerName 2', 'ContactName 2', 
+'Address 2', 'City 2', 'PostalCode 2', 'Country 2');
+
+	select * from CUSTOMERS;
+
+INSERT INTO customer(CustomerID, CustomerName)
+values(autoInc.nextval, 'CustomerName 1');
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="609.0" prefWidth="601.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox layoutX="132.0" layoutY="95.0" prefHeight="328.0" prefWidth="340.0" spacing="10.0">
+         <children>
+            <Label text="Your Name">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameTxt" promptText="Name" />
+            <Label text="Email">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="emailTxt" promptText="e-mail" />
+            <Label text="Password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="pwTxt" promptText="at-least 8 characters" />
+            <Label text="Re-enter password">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="repwTxt" promptText="re-enter password" />
+         </children>
+      </VBox>
+      <Label layoutX="191.0" layoutY="34.0" text="Create Account">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <Button fx:id="createBtn" layoutX="131.0" layoutY="460.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="340.0" text="Create Your Account">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Button>
+      <Button fx:id="loginBtn" layoutX="395.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="76.0" text="Log-in">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label layoutX="132.0" layoutY="554.0" text="Already have an account?">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>

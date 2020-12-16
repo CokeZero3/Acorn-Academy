@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.care.Board.IDao">
+<select id="selectBoard" resultType="com.care.Board.Board">
+SELECT no, id, title, contents, writedate, hit
+    FROM(
+      SELECT LEVEL, no, id, LPAD(' ', 4*(LEVEL-1))||title as title, 	contents, writeDate, nvl(readNo, 0) as hit, pno, depth, 	ROWNUM AS RNUM
+      FROM(
+        SELECT b.no, id, title, contents, to_char(writeDate,'yyyy/mm/dd hh24:mi:ss') writeDate, h.readNo, nvl(rpl.pno, 0) as pno, nvl(rpl.depth, 0) as depth
+        FROM board b
+        LEFT JOIN Hits h
+        ON b.no = h.no
+        LEFT JOIN reply rpl
+        ON b.no = rpl.no
+      )
+      START WITH pno=0
+      CONNECT BY PRIOR no=pno
+      ORDER SIBLINGS BY no desc
+    )
+</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

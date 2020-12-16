@@ -1,0 +1,391 @@
+<%@page import="java.util.List"%>
+<%@page import="Ex01.Customers"%>
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
+<%-- <jsp:include page="viewer.jsp"></jsp:include>
+<hr> --%>
+<%! 
+public Map<String, List<String>> setColumns(){
+    Map<String, List<String>> map = new HashMap<>();
+    List<String> lst = new ArrayList<>();
+    lst.add("customerID");
+    lst.add("customerName");
+    lst.add("ContactName");
+    lst.add("Address");
+    lst.add("City");
+    lst.add("PostalCode");
+    lst.add("Country");
+    map.put("Customers", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("CategoryID");
+    lst.add("CategoryName");
+    lst.add("Description");
+    
+    map.put("Categories", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("EmployeeID");
+    lst.add("LastName");
+    lst.add("FirstName");
+    lst.add("BirthDate");
+    lst.add("Photo");
+    lst.add("Notes");
+    
+    map.put("Employee", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("OrderDetailID");
+    lst.add("OrderID");
+    lst.add("ProductID");
+    lst.add("Quantity");
+    
+    map.put("OrderDetails", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("OrderID");
+    lst.add("CustomerID");
+    lst.add("EmployeeID");
+    lst.add("OrderDate");
+    lst.add("ShipperID");
+    
+    map.put("Orders", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("ProductID");
+    lst.add("ProductName");
+    lst.add("SupplierID");
+    lst.add("CategoryID");
+    lst.add("Unit");
+    lst.add("Price");
+    
+    map.put("Products", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("ShipperID");
+    lst.add("ShipperName");
+    lst.add("Phone");
+    
+    map.put("Shippers", lst);
+    
+    lst = new ArrayList<>();
+    lst.add("SupplierID");
+    lst.add("SupplierName");
+    lst.add("ContactName");
+    lst.add("Address");
+    lst.add("City");
+    lst.add("PostalCode");
+    lst.add("Country");
+    lst.add("Phone");
+    map.put("Suppliers", lst);
+    
+    return map;
+ }
+%>
+<%!public int getRowCount(ResultSet rs) {
+		int rowCnt = 0;
+
+		try {
+			rs.last();
+			rowCnt = rs.getRow();
+			rs.beforeFirst();
+
+		} catch (Exception e) {
+			rowCnt = 0;
+		}
+
+		return rowCnt;
+
+	}
+
+	public String DisplayCustomer(ResultSet rs, List<String> lst) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>customerID</td>");
+		tableTag += ("<td>customerName</td>");
+		tableTag += ("<td>ContactName</td>");
+		tableTag += ("<td>Address</td>");
+		tableTag += ("<td>City</td>");
+		tableTag += ("<td>PostalCode</td>");
+		tableTag += ("<td>Country</td>");
+		try {
+			while (rs.next()) {
+				tableTag += ("<tr>");
+				tableTag += ("<td>" + rs.getString("customerID") + "</td>");
+				tableTag += ("<td>" + rs.getString("customerName") + "</td>");
+				tableTag += ("<td>" + rs.getString("ContactName") + "</td>");
+				tableTag += ("<td>" + rs.getString("Address") + "</td>");
+				tableTag += ("<td>" + rs.getString("City") + "</td>");
+				tableTag += ("<td>" + rs.getString("PostalCode") + "</td>");
+				tableTag += ("<td>" + rs.getString("Country") + "</td>");
+				tableTag += ("</tr>");
+			}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+
+	public String DisplayCategories(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>CategoryID</td>");
+		tableTag += ("<td>CategoryName</td>");
+		tableTag += ("<td>Description</td>");
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("CategoryID") + "</td>");
+			tableTag += ("<td>" + rs.getString("CategoryName") + "</td>");
+			tableTag += ("<td>" + rs.getString("Description") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplayEmployees(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>EmployeeID</td>");
+		tableTag += ("<td>LastName</td>");
+		tableTag += ("<td>FirstName</td>");
+		tableTag += ("<td>BirthDate</td>");
+		tableTag += ("<td>Photo</td>");
+		tableTag += ("<td>Notes</td>");
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("EmployeeID") + "</td>");
+			tableTag += ("<td>" + rs.getString("LastName") + "</td>");
+			tableTag += ("<td>" + rs.getString("FirstName") + "</td>");
+			tableTag += ("<td>" + rs.getString("BirthDate") + "</td>");
+			tableTag += ("<td>" + rs.getString("Photo") + "</td>");
+			tableTag += ("<td>" + rs.getString("Notes") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplayOrderDetails(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>OrderDetailID	</td>");
+		tableTag += ("<td>OrderID</td>");
+		tableTag += ("<td>ProductID</td>");
+		tableTag += ("<td>Quantity</td>");
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("OrderDetailID") + "</td>");
+			tableTag += ("<td>" + rs.getString("OrderID") + "</td>");
+			tableTag += ("<td>" + rs.getString("ProductID") + "</td>");
+			tableTag += ("<td>" + rs.getString("Quantity") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplayOrder(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>OrderID</td>");
+		tableTag += ("<td>CustomerID</td>");
+		tableTag += ("<td>EmployeeID</td>");
+		tableTag += ("<td>OrderDate</td>");
+		tableTag += ("<td>ShipperID</td>");
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("OrderID") + "</td>");
+			tableTag += ("<td>" + rs.getString("CustomerID") + "</td>");
+			tableTag += ("<td>" + rs.getString("EmployeeID") + "</td>");
+			tableTag += ("<td>" + rs.getString("OrderDate") + "</td>");
+			tableTag += ("<td>" + rs.getString("ShipperID") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplayProducts(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>ProductID</td>");
+		tableTag += ("<td>ProductName</td>");
+		tableTag += ("<td>SupplierID</td>");
+		tableTag += ("<td>CategoryID</td>");
+		tableTag += ("<td>Unit</td>");
+		tableTag += ("<td>Price</td>");
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("ProductID") + "</td>");
+			tableTag += ("<td>" + rs.getString("ProductName") + "</td>");
+			tableTag += ("<td>" + rs.getString("SupplierID") + "</td>");
+			tableTag += ("<td>" + rs.getString("CategoryID") + "</td>");
+			tableTag += ("<td>" + rs.getString("Unit") + "</td>");
+			tableTag += ("<td>" + rs.getString("Price") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplayShippers(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>ShipperID	</td>");
+		tableTag += ("<td>ShipperName</td>");
+		tableTag += ("<td>Phone</td>");
+		
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("ShipperID") + "</td>");
+			tableTag += ("<td>" + rs.getString("ShipperName") + "</td>");
+			tableTag += ("<td>" + rs.getString("Phone") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+	public String DisplaySuppliers(ResultSet rs) {
+		String tableTag = "";
+
+		tableTag += ("<table>");
+		tableTag += ("<tr>");
+		tableTag += ("<td>SupplierID</td>");
+		tableTag += ("<td>SupplierName</td>");
+		tableTag += ("<td>ContactName</td>");
+		tableTag += ("<td>Address</td>");
+		tableTag += ("<td>City</td>");
+		tableTag += ("<td>PostalCode</td>");
+		tableTag += ("<td>Country</td>");
+		tableTag += ("<td>Phone</td>");
+		
+		
+		try {
+		while (rs.next()) {
+			tableTag += ("<tr>");
+			tableTag += ("<td>" + rs.getString("SupplierID") + "</td>");
+			tableTag += ("<td>" + rs.getString("SupplierName") + "</td>");
+			tableTag += ("<td>" + rs.getString("ContactName") + "</td>");
+			tableTag += ("<td>" + rs.getString("Address") + "</td>");
+			tableTag += ("<td>" + rs.getString("City") + "</td>");
+			tableTag += ("<td>" + rs.getString("PostalCode") + "</td>");
+			tableTag += ("<td>" + rs.getString("Country") + "</td>");
+			tableTag += ("<td>" + rs.getString("Phone") + "</td>");
+
+			tableTag += ("</tr>");
+		}
+		} catch (Exception e) {
+			tableTag = "<tr><td>Exception</td></tr>";
+		}
+		tableTag += ("</table>");
+
+		return tableTag;
+	}
+%>
+
+
+<%
+request.setCharacterEncoding("euc-kr");
+String tableName = request.getParameter("tableName");
+
+Class.forName("oracle.jdbc.driver.OracleDriver");
+
+Connection conn = null;
+String jdbcDriver = "jdbc:oracle:thin:@localhost:1521:xe";
+String dbUsr = "c##jeongwh0310";
+String dbPass = "0000";
+
+String sql = "Select * From " + tableName;
+
+PreparedStatement pstmt = null;
+ResultSet rs = null;
+try {
+	conn = DriverManager.getConnection(jdbcDriver, dbUsr, dbPass);
+	//ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE 는 커서를 이동시키기 위해 사용됨
+	pstmt = conn.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
+	rs = pstmt.executeQuery();
+
+	out.println("Number of Record: " + getRowCount(rs) + "<br>" + "<hr>");
+	if("Customers".equals(tableName)){
+        out.println(DisplayCustomer(rs));
+     }else if("Categories".equals(tableName)){
+        out.println(DisplayCategories(rs));
+     }else if("Employees".equals(tableName)){
+         out.println(DisplayEmployees(rs));
+      }else if("OrderDetails".equals(tableName)){
+          out.println(DisplayOrderDetails(rs));
+       }else if("Products".equals(tableName)){
+           out.println(DisplayProducts(rs));
+        }else if("Shippers".equals(tableName)){
+            out.println(DisplayShippers(rs));
+         }else if("Suppliers".equals(tableName)){
+             out.println(DisplaySuppliers(rs));
+         }
+} catch (Exception e) {
+	e.printStackTrace();
+} finally {
+	if (rs != null)
+		rs.close();
+	if (pstmt != null)
+		pstmt.close();
+	if (conn != null)
+		conn.close();
+}
+%>

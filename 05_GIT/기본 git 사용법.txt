@@ -1,0 +1,45 @@
+기본 문법
+
+---사용자 등록---
+이름 설정: 	git config --global user.name "wonho.jeong"
+이메일 설정:	git config --global user.email "jeongwh0310@gmail.com"
+에디터 설정:	git config --global user.editor notepad
+
+---저장소 생성---
+pwd
+cd d:
+mkdir git_repository
+cd git-repository
+git init
+cd .git
+ls
+ll
+c
+
+
+vi [파일명] :	작성할 파일명을 입력하면 파일 생성 및 수정
+i : 		vi 내에서 데이터를 입력할 경우 사용
+esc : 		명령어 취소
+:wq : 		저장하고 빠져나오기
+
+생성된 정보 확인: 	ls
+임시 저장소 등록:	git add Test.java
+임시 저장소 상태 확인: git status 
+
+서버에 파일 등록: git commit --message "git 최초 실습"
+상태확인: git status
+
+
+변경 사항 확인: 	git log -p
+		git diff
+		git diff commitID1 commit
+
+파일 내용 확인하기:	cat 파일명
+
+
+Reset and Revert//
+
+BRANCH
+git merge xxxxx
+git checkout -b branch3 나오고 새로 만든 브랜치로 이동
+git stash 

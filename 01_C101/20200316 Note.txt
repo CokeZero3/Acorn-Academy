@@ -1,0 +1,48 @@
+책 pg ~146
+
+#include <stdio.h> //선언문
+int globalVaraiable; //실행문
+int main(int argc, char*argv[]) //실행문 
+
+\n = 새로운 줄
+\r = 줄의 처음으로
+\b = Back Space
+\t = tab(indent)
+\a = Alarm
+
+진법
+2진수 0, 1
+8진수 0~7
+10진수 0~9
+16진수 0~9, A~F 
+
+제어문
+%d 10진(decimal) 정수
+%o 8진(octal) 정수
+%x 16진(hexa_decimal) 정수
+%p 포인터 정수(16) 진수
+%u 부호없는(unsigned) 10진 정수
+%f 10진형 부동(floating) 소수정수
+%e 지수형(exponential) 부동소수정수 
+%c 단인 문자(chracter) 
+%s 문자열(String)
+
+변수(variable)
+
+자료형
+정수			바이트 수
+	int		4
+	long int		4
+	unsigned int	4
+실수
+	float		4
+	double		8
+문자
+	char		1
+	unsigned char	1
+
+
+
+프로젝트 아이디어
++생활비
++

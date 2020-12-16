@@ -1,0 +1,4 @@
+﻿  exe.cpp
+C:\Users\jeong\Desktop\WONHO\Acorn Academy\1. C 언어\정원호(C와 Java 취업반)\01. C 언어\01. Week 1(0316-0320)\0316-0320\200317\200317\200317\exe.cpp(149,11): warning C4477: 'scanf_s' : 서식 문자열 '%d'에 'int *' 형식의 인수가 필요하지만 variadic 인수 1의 형식이 'char (*)[20]'입니다.
+C:\Users\jeong\Desktop\WONHO\Acorn Academy\1. C 언어\정원호(C와 Java 취업반)\01. C 언어\01. Week 1(0316-0320)\0316-0320\200317\200317\200317\exe.cpp(149,11): message : 서식 문자열에서 '%hhd'을(를) 사용하는 것이 좋습니다.
+  200317.vcxproj -> C:\Users\jeong\Desktop\WONHO\Acorn Academy\1. C 언어\정원호(C와 Java 취업반)\01. C 언어\01. Week 1(0316-0320)\0316-0320\200317\200317\Debug\200317.exe
